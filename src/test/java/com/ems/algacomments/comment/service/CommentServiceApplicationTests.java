@@ -1,4 +1,4 @@
-package com.ems.algacomments.comment_service;
+package com.ems.algacomments.comment.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

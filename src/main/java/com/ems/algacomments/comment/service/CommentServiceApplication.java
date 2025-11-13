@@ -1,4 +1,4 @@
-package com.ems.algacomments.comment_service;
+package com.ems.algacomments.comment.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

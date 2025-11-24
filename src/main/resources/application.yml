@@ -23,3 +23,7 @@ spring:
       #Change to create-drop in case of changes in schema
       ddl-auto: update
     show-sql: 'true'
+
+moderation-service:
+  base-url: 'http://localhost:8081'
+

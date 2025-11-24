@@ -3,9 +3,9 @@ package com.ems.algacomments.comment.service.api.controller;
 import com.ems.algacomments.comment.service.api.model.CommentInput;
 import com.ems.algacomments.comment.service.api.model.CommentOutput;
 import com.ems.algacomments.comment.service.api.service.CommentService;
+import com.ems.algacomments.comment.service.domain.model.Comment;
 import io.hypersistence.tsid.TSID;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,16 +21,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/comments")
-@RequiredArgsConstructor
 @Log4j2
 public class CommentController {
 
     private final CommentService commentService;
 
+    public CommentController(CommentService commentService) {
+        this.commentService = commentService;
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CommentOutput create(@Valid @RequestBody CommentInput comment) {
-        log.info("Creating comment: {}", comment);
+    public CommentOutput create(@Valid @RequestBody CommentInput commentInput) {
+        log.info("Creating comment: {}", commentInput);
+        Comment comment = commentService.moderateComment(commentInput);
         return commentService.create(comment);
     }
 

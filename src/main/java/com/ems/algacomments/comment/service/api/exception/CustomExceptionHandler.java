@@ -57,7 +57,7 @@ public class CustomExceptionHandler {
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_GATEWAY);
         problemDetail.setProperty(TIMESTAMP, OffsetDateTime.now().toString());
         problemDetail.setTitle("General Error Occurred");
-        problemDetail.setDetail("Error occurred while communicating with the Moderation Service to validate comment. General error: " + ex.getMessage());
+        problemDetail.setDetail("General error occurred: " + ex.getMessage());
         return problemDetail;
     }
 

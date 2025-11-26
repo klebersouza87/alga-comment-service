@@ -44,6 +44,12 @@ public class CommentService {
                         .commentId(comment.getId().toString())
                         .text(comment.getText())
                         .build());
+
+        if (moderationOutput.isNotApproved()) {
+            log.error("Comment with id: {} not approved. Reason: {}", comment.getId(), moderationOutput.getReason());
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Comment not approved: " + moderationOutput.getReason());
+        }
+
         log.info("Comment with id: {} moderated successfully with reason: {}", comment.getId(), moderationOutput.getReason());
         return comment;
     }

@@ -14,4 +14,8 @@ public class ModerationOutput {
     private boolean approved;
     private String reason;
 
+    public boolean isNotApproved() {
+        return !approved;
+    }
+
 }
